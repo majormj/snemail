@@ -5,14 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="snemail",
-    version="1.1.8",
+    version="1.1.9",
     author="manji",
     author_email="pnsm@qq.com",                         # 作者邮箱
     description="发送邮件库",                            # 模块简介
     long_description=long_description,                  # 模块详细介绍
     long_description_content_type="text/markdown",      # 模块详细介绍格式
     url="https://github.com/majormj/sendmail",
-    url="https://gitee.com/manjim/snemail",
     packages=setuptools.find_packages(),                # 自动找到项目中导入的模块
 
     # 模块相关的元数据（更多描述信息）
