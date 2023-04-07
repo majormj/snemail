@@ -1,5 +1,5 @@
 # 打包成 pypi 文件
 python setup.py sdist bdist_wheel
 
-# 执行上传
+# 执行上传 twine upload --repository pypi dist/*
 C:\Users\manji\AppData\Roaming\Python\Python36\Scripts\twine.exe upload --repository pypi dist/*
