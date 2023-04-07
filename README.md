@@ -1,8 +1,8 @@
 ## 使用方式
 
-项目地址  https://github.com/majormj/snemail
+github地址  https://github.com/majormj/snemail
 
-码云地址 https://gitee.com/manjim/snemail
+gitee 地址 https://gitee.com/manjim/snemail
 
 #### 测试环境
 
