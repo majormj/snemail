@@ -6,8 +6,7 @@ gitee 地址 https://gitee.com/manjim/snemail
 #### 测试环境
 
 目前测试支持的python版本3.6，和python 3.11
-
-如果登录遇到失败，可尝试修改python版本的判断范围尝试
+如果登录失败遇到错误 con 不存在，可尝试修改python版本的判断范围尝试（ssl的校验方式）
 
 ````python
 def mail_login(self,user="",password=""):
@@ -46,7 +45,8 @@ def mail_login(self,user="",password=""):
 
 #### 依赖说明
 
-包依赖 smtplib 模块，直接 pip install smtplib 可能安装失败，可以试下安装 PyEmail，但是这个没试过不确定能不能用
+包依赖 smtplib 模块，和 email 模块，这两个库在python11中是标准库。如果在其他python中不存在折两个库
+直接 pip install smtplib 可能安装失败，可以试下安装 PyEmail，但是这个没试过不确定能不能用
 
 ```shell
 pip install  PyEmail
