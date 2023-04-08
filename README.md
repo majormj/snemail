@@ -1,7 +1,6 @@
 ## 使用方式
 
 github地址  https://github.com/majormj/snemail
-
 gitee 地址 https://gitee.com/manjim/snemail
 
 #### 测试环境
