@@ -123,9 +123,15 @@ class SnEmail():
         else:
             self.msg['From']    = emailComeShow 
 
-        self.msg['To']      = ";".join(emailTo)    # 显示的收件人 # ’收件人1；收件人2；收件人3....‘
-        self.msg['cc']      = ";".join(emailCC)    # 显示的抄送人 用; 分割
+        if any([emailTo,emailCC]):
+            self.msg['To']      = ";".join(emailTo)    # 显示的收件人 # ’收件人1；收件人2；收件人3....‘
+            self.msg['cc']      = ";".join(emailCC)    # 显示的抄送人 用; 分割
+        else:
+            return '收件人或者抄送人必须有至少一个不为空'
+        
         emailToTure = ";".join(set(emailTo + emailCC ) - set(emailNoSend))  # 实际发送的邮件列表
+        if not "@" in emailToTure  :
+            return "不存在实际的邮件接收人，请检查。"
 
         # 发送邮件
         try:
