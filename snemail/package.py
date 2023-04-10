@@ -80,15 +80,18 @@ class SnEmail():
 
     def mail_image(self,image_path=""):
         """将图片以内容形式添加到邮件正文"""
-        image_data2 = open(image_path,'rb')         # 打开图片文件
-        image2      = MIMEImage(image_data2.read()) # MIMEImage(图片二进制数据)
-        image_data2.close()                         # 关闭打开的图片文件
-        image2.add_header('Content-ID','<tupian2>')  # 定于图片ID 在html中使用  image2.add_header('Content-ID','<XXXXX>')
-        self.msg.attach(image2)
-        content = """<p><img src = 'cid:tupian2'>\n</p>"""
-        html = MIMEText(content,ctype='html',encode='utf-8')
-        self.msg.attach(html)
-
+        if os.path.isfile(image_path):
+            image_data2 = open(image_path,'rb')         # 打开图片文件
+            image2      = MIMEImage(image_data2.read()) # MIMEImage(图片二进制数据)
+            image_data2.close()                         # 关闭打开的图片文件
+            image2.add_header('Content-ID','<tupian2>')  # 定于图片ID 在html中使用  image2.add_header('Content-ID','<XXXXX>')
+            self.msg.attach(image2)
+            content = """<p><img src = 'cid:tupian2'>\n</p>"""
+            html = MIMEText(content,ctype='html',encode='utf-8')
+            self.msg.attach(html)
+        else:
+            print('%s 不是一个有效的文件路径或者无法识别，请检查！' % image_path)
+        
     def mail_file(self,files=[]):
         """ 添加邮件附件（中英文文件名都支持），传入参数 files 必须是列表  """
         if len(files) != 0:  # 循环读取文件列表
@@ -108,6 +111,8 @@ class SnEmail():
 
                     # 添加附件
                     self.msg.attach(file1)    
+                else:
+                    print('%s 不是一个有效的文件路径或者无法识别，请检查！' % files[i])
 
     def mail_send(self,emailTo=[],emailCC=[],emailNoSend=[],emailComeShow =""):
         """
