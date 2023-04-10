@@ -18,7 +18,7 @@ if __name__ == '__main__':
     sn.mail_file([r"C:\Users\manji\Downloads\全量商品列表.xlsx"])
 
     # 登录邮箱
-    print(sn.login(user="",password=""))
+    print(sn.mail_login(user="",password=""))
 
     # 发送邮件
-    print(sn.mail_send(emailTo=['']))
+    print(sn.mail_send(emailTo=[]))
