@@ -135,7 +135,7 @@ class SnEmail():
             return '收件人或者抄送人必须有至少一个不为空'
         
         emailToTure = set(emailTo + emailCC ) - set(emailNoSend) # 实际发送的邮件列表
-        if not "@" in emailToTure  :
+        if not "@" in ";".join(emailToTure)  :
             return "不存在实际的邮件接收人，请检查。"
 
         # 发送邮件
