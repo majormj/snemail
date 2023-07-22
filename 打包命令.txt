@@ -1,6 +1,18 @@
 
-# 打包成 pypi 文件
+# 安装打包库
+pip install --user --upgrade setuptools wheel
+# 在根目录cmd 执行打包
 python setup.py sdist bdist_wheel
 
-# 执行上传 twine upload --repository pypi dist/*
-C:\Users\manji\AppData\Roaming\Python\Python36\Scripts\twine.exe upload --repository pypi dist/*
+
+# 安装上传包的库
+python -m pip install --user --upgrade twine
+# 执行上传命令  （在 dist 目录下运行） 
+# dist/* 表示当前目录下的所有文件 也可以使用 E:\gitee\snemail\dist\* 
+twine upload --repository pypi dist/*
+# 例如
+C:\Users\manji\AppData\Roaming\Python\Python311\Scripts\twine.exe upload --repository pypi  E:\gitee\snemail\dist\*
+# 如果找不到 twine 请运行
+C:\Users\manji\AppData\Roaming\Python\Python311\Scripts\twine.exe upload --repository pypi dist/*
+
+# 之后会提示输入用户名和密码 执行上传即可
