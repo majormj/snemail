@@ -33,27 +33,33 @@ class SnEmail():
     
         self.msg = MIMEMultipart() 
 
-    def mail_login(self,user="",password=""):
+    def mail_login(self,user="",password="",ifssl=True):
         """登录邮箱"""
 
         self.emailCome = user       # 邮件的时间发送人（发邮件的时候调用）
         self.loginStatus = False    # 登录结果状态
         try:
-            # 1、链接邮箱服务器(带 SSL 启用安全机制) # 端口号：465/25
-            # 1.1 判断python版本
-            vamax = sys.version_info.major   #  大版本号例如3.6.8  则表示3
-            vsmin = sys.version_info.minor   #  小版本号例如3.6.8  则表示6
+            if ifssl:
+                print("ifssl的值",ifssl,"启用SSL验证")
+                # 1、链接邮箱服务器(带 SSL 启用安全机制) # 端口号：465/25
+                # 1.1 判断python版本
+                vamax = sys.version_info.major   #  大版本号例如3.6.8  则表示3
+                vsmin = sys.version_info.minor   #  小版本号例如3.6.8  则表示6
 
-            if vamax == 3 and vsmin < 10:  #  python 版本号大于3
+                if vamax == 3 and vsmin < 10:  #  python 版本号大于3
 
-                self.con = smtplib.SMTP_SSL(self.server,self.port) 
+                    self.con = smtplib.SMTP_SSL(self.server,self.port) 
 
+                else:
+                    """ Python 3.10 及以上版本使用"""
+                    import ssl
+                    ctx = ssl.create_default_context()
+                    ctx.set_ciphers('DEFAULT')
+                    self.con = smtplib.SMTP_SSL(self.server,port=self.port, context = ctx)
             else:
-                """ Python 3.10 及以上版本使用"""
-                import ssl
-                ctx = ssl.create_default_context()
-                ctx.set_ciphers('DEFAULT')
-                self.con = smtplib.SMTP_SSL(self.server,port=self.port, context = ctx)
+                print("ifssl的值",ifssl,"不启用验证")
+                self.con = smtplib.SMTP('smtp.office365.com', 587)
+                self.con.starttls()
 
             # 2、登录邮箱 # 链接对象.login(账号、密码)
             self.con.login(user,password) 

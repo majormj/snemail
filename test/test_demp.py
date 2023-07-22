@@ -22,3 +22,10 @@ if __name__ == '__main__':
 
     # 发送邮件
     print(sn.mail_send(emailTo=[]))
+
+
+def uu():
+    """
+    
+    
+    """
